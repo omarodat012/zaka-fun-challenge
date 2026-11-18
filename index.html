@@ -23,6 +23,8 @@
     .select,.text-input{background:#191321;border-color:#59446d}.select:focus,.text-input:focus{border-color:#c7a8e6;box-shadow:0 0 0 3px #c7a8e622}.submit{background:#d7c0f2;color:#24152f}.submit:disabled{opacity:.45;cursor:not-allowed}.team-mark{background:#49365e;color:#f0e5fb}.mark-blue{background:#403150;color:#e0cafa}.mark-purple{background:#523a62;color:#efd7ff}.bar span{background:linear-gradient(90deg,#8d69b0,#dfc8f5)}
     .vote-targets{display:grid;gap:14px}.vote-team-card{padding:18px;background:#21182d;border:1px solid #49365e;border-radius:14px}.vote-team-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px}.vote-team-header h3{font:600 16px 'Space Grotesk',sans-serif;margin:0}.vote-total{font:600 13px 'Space Grotesk',sans-serif;color:#d7c0f2}.vote-ratings{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.vote-rating{padding:11px;background:#191321;border:1px solid #3e2e4e;border-radius:11px}.vote-rating label{font-size:11px;font-weight:600;display:block;margin-bottom:9px}.rating-line{display:flex;align-items:center;gap:9px}.rating-line input{width:100%;accent-color:#cbaee6}.rating-value{font-size:12px;font-weight:700;color:#d7c0f2;min-width:18px;text-align:right}
     [hidden]{display:none!important}.admin-login{max-width:460px;margin:34px auto;padding:30px}.admin-login .card-title{font-size:19px;margin-top:14px}.admin-login .submit{width:100%}.login-mark{width:44px;height:44px;display:grid;place-items:center;border-radius:14px;background:linear-gradient(145deg,#76529a,#4c3267);color:white;font:700 23px 'Space Grotesk',sans-serif;box-shadow:0 8px 26px #0003}.admin-control-header{display:flex;align-items:center;justify-content:space-between;padding:15px 18px;margin:0 0 16px;border:1px solid #49365e;border-radius:14px;background:#241a31}.admin-session-label{font-size:9px;letter-spacing:.16em;color:#d6bbee;font-weight:700}.admin-session-email{font-size:13px;color:#f2eafa;margin-top:4px}
+    .leader-auth-card{max-width:650px;margin:28px auto;padding:28px}.leader-auth-actions{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:18px 0}.leader-choice{min-height:47px;color:#f2eafa;font-weight:600}.leader-auth-card form{padding-top:14px;border-top:1px solid #49365e}.leader-auth-card form .submit{width:100%}.leader-voting{max-width:850px;margin:20px auto}.leader-session-bar{display:flex;justify-content:space-between;align-items:center;padding:14px 17px;margin-bottom:13px;border:1px solid #49365e;border-radius:14px;background:#241a31}.leader-session-caption{font-size:9px;letter-spacing:.16em;color:#bca4d3;margin-right:10px}.team-badge{display:inline-flex;padding:7px 11px;border-radius:9px;background:#523a68;color:#fff;font-size:12px;font-weight:700}.voting-notice{padding:16px 17px;background:#352347;border:1px solid #765995;border-radius:12px;color:#f5edfb;font-size:13px;line-height:1.55}.access-denied{border-color:#76516d}.access-denied .login-mark{background:linear-gradient(145deg,#875a80,#543251)}
+    @media(max-width:560px){.leader-auth-card{padding:20px}.leader-auth-actions{grid-template-columns:1fr}.leader-session-caption{display:block;margin:0 0 5px}}
     @media(max-width:560px){.logo-slot.zaka-logo{width:74px;height:38px}.vote-ratings{grid-template-columns:1fr}.vote-team-card{padding:14px}}
   </style>
 </head>
@@ -45,13 +47,24 @@
       <div class="section-head"><h2>What teams are judged on</h2><span class="hint">Three criteria · equal weight</span></div>
       <div class="two-col"><div class="card"><div class="card-title">The scorecard</div><p class="card-copy">Every team gets a fair shot. Cast thoughtful votes across the three pillars of the challenge.</p><div class="criteria-list"><div class="criterion"><div><div class="criterion-label">Idea &amp; Execution</div><div class="criterion-sub">Originality, usefulness, and how well it works</div></div><span class="points">1 — 10</span></div><div class="criterion"><div><div class="criterion-label">AI Utilization</div><div class="criterion-sub">Creative use of Alibaba AI to build without manual coding</div></div><span class="points">1 — 10</span></div><div class="criterion"><div><div class="criterion-label">Presentation</div><div class="criterion-sub">A clear, engaging story that brings the idea to life</div></div><span class="points">1 — 10</span></div></div></div><div class="card"><div class="card-title">Score breakdown</div><p class="card-copy">Nova Vision · average across submitted peer reviews</p><div class="progress-wrap"><div class="progress-item"><span>Idea &amp; Execution</span><strong>9.4</strong><div class="progress-line"><span style="width:94%"></span></div></div><div class="progress-item"><span>AI Utilization</span><strong>9.1</strong><div class="progress-line"><span style="width:91%;background:#a78bfa"></span></div></div><div class="progress-item"><span>Presentation</span><strong>9.0</strong><div class="progress-line"><span style="width:90%;background:#f4c56b"></span></div></div></div></div></div>
     </section>
-    <section class="view" id="vote"><div class="eyebrow">Peer review</div><h1>Cast your votes.</h1><p class="subhead">Choose your team, then score every other team. Your team is excluded automatically.</p>
-      <div class="card vote-panel"><div class="card-title">Your team</div><p class="card-copy">Scores are from 1 to 10 for each criterion. The total for each team is out of 30.</p>
-        <label class="field-label" for="voter">Select your team</label><select class="select" id="voter"><option value="">Loading teams…</option></select>
-        <div class="section-head" style="margin-top:25px"><h2>Teams to rate</h2><span class="hint" id="voteTeamHint">Choose your team first</span></div>
-        <div id="voteTargets" class="vote-targets"><p class="placeholder-note">Select your team to see the other teams.</p></div>
-        <button class="submit" id="submitVote" disabled>Submit Votes <span aria-hidden="true">→</span></button>
-        <div class="placeholder-note" id="voteStatus">Votes will be saved to Firestore when Firebase is configured.</div>
+    <section class="view" id="vote"><div class="eyebrow">Peer review</div><h1>Team voting.</h1><p class="subhead">Team leaders sign in to cast their team’s vote when the Admin opens their turn.</p>
+      <div class="card leader-auth-card" id="leaderAuthCard"><div class="login-mark">Z</div><div class="card-title">Team Leader access</div><p class="card-copy">Claim your team once, or sign in with your existing team leader account.</p>
+        <div class="leader-auth-actions"><button type="button" class="secondary leader-choice" id="showClaimForm">Claim Your Team (Sign Up)</button><button type="button" class="secondary leader-choice" id="showLeaderLogin">Team Leader Login</button></div>
+        <form id="claimTeamForm" hidden><label class="field-label" for="claimTeamSelect">Unclaimed team</label><select class="select" id="claimTeamSelect" required><option value="">Loading unclaimed teams…</option></select>
+          <label class="field-label" for="claimEmail" style="margin-top:15px">Email</label><input class="text-input" id="claimEmail" type="email" autocomplete="email" required placeholder="leader@example.com" />
+          <label class="field-label" for="claimPassword" style="margin-top:15px">Password</label><input class="text-input" id="claimPassword" type="password" autocomplete="new-password" minlength="6" required placeholder="At least 6 characters" />
+          <button class="submit" type="submit" id="claimTeamButton">Claim team &amp; create account</button></form>
+        <form id="leaderLoginForm" hidden><label class="field-label" for="leaderEmail">Email</label><input class="text-input" id="leaderEmail" type="email" autocomplete="username" required placeholder="leader@example.com" />
+          <label class="field-label" for="leaderPassword" style="margin-top:15px">Password</label><input class="text-input" id="leaderPassword" type="password" autocomplete="current-password" required placeholder="Enter your password" />
+          <button class="submit" type="submit" id="leaderLoginButton">Team Leader Login</button></form>
+        <p class="placeholder-note" id="leaderAuthStatus" role="status">Choose an option to continue.</p>
+      </div>
+      <div class="leader-voting" id="leaderVoting" hidden><div class="leader-session-bar"><div><span class="leader-session-caption">VOTING AS</span><span class="team-badge" id="leaderTeamBadge">Team</span></div><button type="button" class="secondary" id="leaderLogoutButton">Logout</button></div>
+        <div class="card vote-panel"><div id="activeVotingNotice" class="voting-notice" role="status">Waiting for Admin to open voting for the next team...</div>
+          <div id="voteTargets" class="vote-targets" hidden></div>
+          <button class="submit" id="submitVote" hidden>Submit Vote</button>
+          <div class="placeholder-note" id="voteStatus"></div>
+        </div>
       </div>
     </section>
     <section class="view" id="admin"><div class="eyebrow">Organizer tools</div><h1>Admin Panel.</h1><p class="subhead">Manage teams and control what the audience sees.</p>
@@ -61,6 +74,7 @@
           <button class="submit" type="submit" id="adminLoginButton">Login <span aria-hidden="true">→</span></button></form>
         <p class="placeholder-note" id="adminAuthStatus" role="status">Sign in to manage teams and leaderboard settings.</p>
       </div>
+      <div class="card admin-login access-denied" id="adminDeniedPanel" hidden><div class="login-mark">!</div><div class="card-title">Access Denied - Admins Only</div><p class="card-copy">This account does not have permission to manage the competition.</p><button class="secondary" id="deniedLogoutButton" type="button">Logout</button></div>
       <div id="adminControls" hidden><div class="admin-control-header"><div><span class="admin-session-label">SIGNED IN</span><div id="adminSignedInEmail" class="admin-session-email"></div></div><button class="secondary" id="adminLogoutButton" type="button">Logout</button></div>
       <div class="admin-grid">
         <div class="card"><div class="card-title">Add a team</div><p class="card-copy">Enter team members separated by commas or new lines.</p>
@@ -76,6 +90,10 @@
             <label class="visibility-option"><input type="radio" name="visibility" value="hideTop3"><span><strong>Hide Top 3</strong><small>Hide the first three places and scores</small></span></label>
           </div><div class="placeholder-note" id="settingsStatus">Connect Firebase to save visibility changes.</div>
         </div>
+        <div class="card"><div class="card-title">Live Voting Control</div><p class="card-copy">Open the voting turn for one team at a time. Close voting by selecting None.</p>
+          <label class="field-label" for="activeTeamSelect">Currently active team</label><select class="select" id="activeTeamSelect"><option value="">Voting Closed / None</option></select>
+          <button class="submit" type="button" id="setActiveTeamButton">Set active team</button><div class="placeholder-note" id="activeTeamStatus">Choose a team to open its voting turn.</div>
+        </div>
       </div></div>
     </section>
   </main>
@@ -83,8 +101,10 @@
   <script type="module">
     // Firebase v10 modular SDK setup. Add your Firebase project values below to enable it.
     import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js';
-    import { getFirestore, collection, addDoc, deleteDoc, doc, onSnapshot, setDoc, writeBatch, serverTimestamp } from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js';
-    import { getAuth, signInWithEmailAndPassword, onAuthStateChanged, signOut } from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js';
+    import { getFirestore, collection, addDoc, deleteDoc, doc, onSnapshot, setDoc, serverTimestamp, runTransaction } from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js';
+    import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, onAuthStateChanged, signOut } from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js';
+
+    const ADMIN_EMAILS = ['omarodat012@gmail.com', 'shahla.alzawahreh33@gmail.com'];
 
     const firebaseConfig = {
       apiKey: 'AIzaSyCJH3t7zQIb5yrMsgsG5Kg6_osm7xvlXbs',
@@ -116,21 +136,31 @@
     const leaderboardStatus = document.getElementById('leaderboardStatus');
     const teamStat = document.getElementById('teamStat');
     const voteStat = document.getElementById('voteStat');
-    const voterSelect = document.getElementById('voter');
     const voteTargets = document.getElementById('voteTargets');
-    const voteTeamHint = document.getElementById('voteTeamHint');
     const submitVoteButton = document.getElementById('submitVote');
     const voteStatus = document.getElementById('voteStatus');
     const adminLoginPanel = document.getElementById('adminLoginPanel');
+    const adminDeniedPanel = document.getElementById('adminDeniedPanel');
     const adminControls = document.getElementById('adminControls');
     const adminLoginForm = document.getElementById('adminLoginForm');
     const adminLoginButton = document.getElementById('adminLoginButton');
     const adminAuthStatus = document.getElementById('adminAuthStatus');
     const adminSignedInEmail = document.getElementById('adminSignedInEmail');
+    const activeTeamSelect = document.getElementById('activeTeamSelect');
+    const activeTeamStatus = document.getElementById('activeTeamStatus');
+    const leaderAuthCard = document.getElementById('leaderAuthCard');
+    const leaderVoting = document.getElementById('leaderVoting');
+    const leaderAuthStatus = document.getElementById('leaderAuthStatus');
+    const activeVotingNotice = document.getElementById('activeVotingNotice');
+    const claimTeamSelect = document.getElementById('claimTeamSelect');
     let currentTeams = [];
     let currentVotes = [];
     let visibilityState = 'showAll';
+    let activeVotingTeamId = null;
+    let authUser = null;
+    let leaderTeam = null;
     let unsubTeams, unsubSettings, unsubVotes;
+    const isAdminUser = user => Boolean(user?.email && ADMIN_EMAILS.some(email => email.trim().toLowerCase() === user.email.toLowerCase()));
 
     function renderAdminTeams(teams) {
       currentTeams = teams;
@@ -147,7 +177,7 @@
         info.append(name, members);
         const remove = document.createElement('button'); remove.type = 'button'; remove.className = 'delete-team'; remove.textContent = 'Delete'; remove.setAttribute('aria-label', `Delete ${team.name}`);
         remove.addEventListener('click', async () => {
-          if (!auth?.currentUser) return toast('Sign in as an admin before managing teams.');
+          if (!isAdminUser(auth?.currentUser)) return toast('Admins only.');
           if (!window.confirm(`Delete team “${team.name}”?`)) return;
           try { await deleteDoc(doc(db, 'teams', team.id)); toast('Team deleted.'); }
           catch (error) { console.error(error); toast('Could not delete team. Check Firestore permissions.'); }
@@ -161,36 +191,64 @@
       { key: 'aiUtilization', label: 'AI Utilization' },
       { key: 'presentation', label: 'Presentation' }
     ];
-    function renderVoteTargets() {
-      const voterId = voterSelect.value;
-      const targets = currentTeams.filter(team => team.id !== voterId);
-      voteTargets.replaceChildren();
-      if (!voterId || !targets.length) {
-        const prompt = document.createElement('p'); prompt.className = 'placeholder-note';
-        prompt.textContent = voterId ? 'No other teams are available to rate yet.' : 'Select your team to see the other teams.';
-        voteTargets.append(prompt); voteTeamHint.textContent = voterId ? 'No other teams' : 'Choose your team first'; submitVoteButton.disabled = true; return;
-      }
-      voteTeamHint.textContent = `${targets.length} ${targets.length === 1 ? 'team' : 'teams'}`;
-      targets.forEach(team => {
-        const card = document.createElement('article'); card.className = 'vote-team-card'; card.dataset.teamId = team.id;
-        const header = document.createElement('div'); header.className = 'vote-team-header';
-        const title = document.createElement('h3'); title.textContent = team.name;
-        const total = document.createElement('span'); total.className = 'vote-total'; total.textContent = 'Total: 15 / 30'; header.append(title, total);
-        const ratings = document.createElement('div'); ratings.className = 'vote-ratings';
-        voteCriteria.forEach(criterion => {
-          const field = document.createElement('div'); field.className = 'vote-rating';
-          const label = document.createElement('label'); label.textContent = criterion.label;
-          const line = document.createElement('div'); line.className = 'rating-line';
-          const input = document.createElement('input'); input.type = 'range'; input.min = '1'; input.max = '10'; input.step = '1'; input.value = '5'; input.dataset.criterion = criterion.key; input.setAttribute('aria-label', `${criterion.label} score for ${team.name}`);
-          const value = document.createElement('span'); value.className = 'rating-value'; value.textContent = '5';
-          input.addEventListener('input', () => { value.textContent = input.value; const sum = [...card.querySelectorAll('input[data-criterion]')].reduce((n, item) => n + Number(item.value), 0); total.textContent = `Total: ${sum} / 30`; });
-          line.append(input, value); field.append(label, line); ratings.append(field);
-        });
-        card.append(header, ratings); voteTargets.append(card);
-      });
-      submitVoteButton.disabled = false;
+    function renderClaimTeamOptions() {
+      const previous = claimTeamSelect.value;
+      const available = currentTeams.filter(team => !team.leaderUid);
+      claimTeamSelect.replaceChildren();
+      const placeholder = document.createElement('option'); placeholder.value = ''; placeholder.textContent = available.length ? 'Select an unclaimed team' : 'No unclaimed teams available'; claimTeamSelect.append(placeholder);
+      available.forEach(team => { const option = document.createElement('option'); option.value = team.id; option.textContent = team.name; claimTeamSelect.append(option); });
+      if (available.some(team => team.id === previous)) claimTeamSelect.value = previous;
+      document.getElementById('claimTeamButton').disabled = !available.length;
     }
-    voterSelect.addEventListener('change', renderVoteTargets);
+
+    function syncLeaderTeam() {
+      leaderTeam = authUser && !isAdminUser(authUser) ? currentTeams.find(team => team.leaderUid === authUser.uid) || null : null;
+      renderClaimTeamOptions();
+      const previousActive = activeTeamSelect.value;
+      activeTeamSelect.replaceChildren();
+      const closedOption = document.createElement('option'); closedOption.value = ''; closedOption.textContent = 'Voting Closed / None'; activeTeamSelect.append(closedOption);
+      currentTeams.forEach(team => { const option = document.createElement('option'); option.value = team.id; option.textContent = team.name; activeTeamSelect.append(option); });
+      activeTeamSelect.value = currentTeams.some(team => team.id === activeVotingTeamId) ? activeVotingTeamId : (currentTeams.some(team => team.id === previousActive) ? previousActive : '');
+      renderVoteTab();
+    }
+
+    function renderVoteTab() {
+      const signedLeader = Boolean(authUser && leaderTeam);
+      leaderAuthCard.hidden = signedLeader;
+      leaderVoting.hidden = !signedLeader;
+      if (!signedLeader) {
+        voteTargets.hidden = true; submitVoteButton.hidden = true;
+        if (authUser) leaderAuthStatus.textContent = 'This account is not linked to a team. Log in with the correct Team Leader account or sign out.';
+        return;
+      }
+      document.getElementById('leaderTeamBadge').textContent = leaderTeam.name;
+      voteTargets.replaceChildren(); voteTargets.hidden = true; submitVoteButton.hidden = true;
+      if (!activeVotingTeamId) { activeVotingNotice.textContent = 'Waiting for Admin to open voting for the next team...'; voteStatus.textContent = ''; return; }
+      if (activeVotingTeamId === leaderTeam.id) { activeVotingNotice.textContent = 'Your team is currently being evaluated! You cannot vote for your own team.'; voteStatus.textContent = ''; return; }
+      const target = currentTeams.find(team => team.id === activeVotingTeamId);
+      if (!target) { activeVotingNotice.textContent = 'Waiting for Admin to open voting for the next team...'; voteStatus.textContent = ''; return; }
+      const voteId = `${leaderTeam.id}_${target.id}`;
+      if (currentVotes.some(vote => vote.id === voteId)) {
+        activeVotingNotice.textContent = `Vote submitted for ${target.name}. Waiting for the next team...`; voteStatus.textContent = ''; return;
+      }
+      activeVotingNotice.textContent = `Your team is up to vote for ${target.name}. Rate each criterion from 1 to 10.`;
+      const card = document.createElement('article'); card.className = 'vote-team-card'; card.dataset.teamId = target.id;
+      const header = document.createElement('div'); header.className = 'vote-team-header';
+      const title = document.createElement('h3'); title.textContent = target.name;
+      const total = document.createElement('span'); total.className = 'vote-total'; total.textContent = 'Total: 15 / 30'; header.append(title, total);
+      const ratings = document.createElement('div'); ratings.className = 'vote-ratings';
+      voteCriteria.forEach(criterion => {
+        const field = document.createElement('div'); field.className = 'vote-rating';
+        const label = document.createElement('label'); label.textContent = criterion.label;
+        const line = document.createElement('div'); line.className = 'rating-line';
+        const input = document.createElement('input'); input.type = 'range'; input.min = '1'; input.max = '10'; input.step = '1'; input.value = '5'; input.dataset.criterion = criterion.key; input.setAttribute('aria-label', `${criterion.label} score for ${target.name}`);
+        const value = document.createElement('span'); value.className = 'rating-value'; value.textContent = '5';
+        input.addEventListener('input', () => { value.textContent = input.value; const sum = [...card.querySelectorAll('input[data-criterion]')].reduce((n, item) => n + Number(item.value), 0); total.textContent = `Total: ${sum} / 30`; });
+        line.append(input, value); field.append(label, line); ratings.append(field);
+      });
+      card.append(header, ratings); voteTargets.append(card); voteTargets.hidden = false; submitVoteButton.hidden = false;
+      voteStatus.textContent = '';
+    }
 
     function applyVisibility(mode) {
       visibilityState = mode;
@@ -217,7 +275,7 @@
     function renderLeaderboard() {
       const voteTotals = new Map();
       currentVotes.forEach(vote => {
-        const ratedTeamId = vote.ratedTeamId || vote.teamId;
+        const ratedTeamId = vote.targetTeamId || vote.ratedTeamId || vote.teamId;
         if (!ratedTeamId) return;
         let total = Number(vote.total);
         const criteria = vote.criteria || {};
@@ -282,7 +340,7 @@
 
     document.getElementById('teamForm').addEventListener('submit', async event => {
       event.preventDefault();
-      if (!auth?.currentUser) return toast('Sign in as an admin before managing teams.');
+      if (!isAdminUser(auth?.currentUser)) return toast('Admins only.');
       if (!db) return toast('Add Firebase config first to save teams.');
       const name = document.getElementById('teamName').value.trim();
       const members = document.getElementById('teamMembers').value.split(/[\n,]+/).map(member => member.trim()).filter(Boolean);
@@ -297,7 +355,7 @@
     });
 
     document.querySelectorAll('input[name="visibility"]').forEach(input => input.addEventListener('change', async () => {
-      if (!auth?.currentUser) { applyVisibility(visibilityState); return toast('Sign in as an admin to change visibility.'); }
+      if (!isAdminUser(auth?.currentUser)) { applyVisibility(visibilityState); return toast('Admins only.'); }
       applyVisibility(input.value);
       if (!db) { settingsStatus.textContent = 'Preview only — add Firebase config to persist this setting.'; return; }
       settingsStatus.textContent = 'Saving visibility setting…';
@@ -305,26 +363,40 @@
       catch (error) { console.error(error); settingsStatus.textContent = 'Could not save. Check Firestore permissions.'; toast('Could not save visibility setting.'); }
     }));
 
+    document.getElementById('setActiveTeamButton').addEventListener('click', async () => {
+      if (!isAdminUser(auth?.currentUser)) return toast('Admins only.');
+      if (!db) return toast('Firebase is not configured.');
+      const selectedId = activeTeamSelect.value || null;
+      const selectedTeam = currentTeams.find(team => team.id === selectedId);
+      try {
+        await setDoc(settingsRef(), { activeVotingTeamId: selectedId, updatedAt: serverTimestamp() }, { merge: true });
+        activeTeamStatus.textContent = selectedTeam ? `Voting turn opened for ${selectedTeam.name}.` : 'Voting is closed. No team is active.';
+        toast(selectedTeam ? `Voting opened for ${selectedTeam.name}.` : 'Voting closed.');
+      } catch (error) { console.error(error); activeTeamStatus.textContent = 'Could not update the active team. Check Firestore permissions.'; }
+    });
+
     if (db) {
       settingsStatus.textContent = 'Listening for live updates…';
       unsubTeams = onSnapshot(teamsRef(), snapshot => {
         const teams = snapshot.docs.map(item => ({ id: item.id, ...item.data() })).sort((a, b) => a.name.localeCompare(b.name));
         renderAdminTeams(teams);
-        const previousTeam = voterSelect.value;
-        voterSelect.replaceChildren();
-        const placeholder = document.createElement('option'); placeholder.value = ''; placeholder.textContent = teams.length ? 'Select your team' : 'No teams available'; voterSelect.append(placeholder);
-        teams.forEach(team => { const option = document.createElement('option'); option.value = team.id; option.textContent = team.name; voterSelect.append(option); });
-        if (teams.some(team => team.id === previousTeam)) voterSelect.value = previousTeam;
-        renderVoteTargets();
+        syncLeaderTeam();
         renderLeaderboard();
       }, error => { console.error(error); settingsStatus.textContent = 'Could not read Firestore. Check your database rules.'; });
       unsubVotes = onSnapshot(votesRef(), snapshot => {
         currentVotes = snapshot.docs.map(item => ({ id: item.id, ...item.data() }));
         renderLeaderboard();
+        const currentVoteId = leaderTeam && activeVotingTeamId ? `${leaderTeam.id}_${activeVotingTeamId}` : null;
+        if (currentVoteId && currentVotes.some(vote => vote.id === currentVoteId)) renderVoteTab();
       }, error => { console.error(error); leaderboardStatus.textContent = 'Could not load votes from Firestore. Check database rules.'; });
       unsubSettings = onSnapshot(settingsRef(), snapshot => {
-        const mode = snapshot.exists() ? snapshot.data().leaderboardVisibility : 'showAll';
+        const data = snapshot.exists() ? snapshot.data() : {};
+        const mode = data.leaderboardVisibility || 'showAll';
+        activeVotingTeamId = data.activeVotingTeamId || null;
         if (['showAll', 'hideAll', 'hideTop3'].includes(mode)) applyVisibility(mode);
+        activeTeamSelect.value = activeVotingTeamId || '';
+        activeTeamStatus.textContent = activeVotingTeamId ? `Voting is open for ${currentTeams.find(team => team.id === activeVotingTeamId)?.name || 'the selected team'}.` : 'Voting is closed. No team is active.';
+        renderVoteTab();
         settingsStatus.textContent = 'Visibility changes sync live from Firestore.';
       }, error => { console.error(error); settingsStatus.textContent = 'Could not read settings. Check Firestore rules.'; });
     }
@@ -364,50 +436,110 @@
           : 'Sign-in failed. Check your email and password.';
       } finally { adminLoginButton.disabled = false; }
     });
+    document.getElementById('showClaimForm').addEventListener('click', () => {
+      document.getElementById('claimTeamForm').hidden = false;
+      document.getElementById('leaderLoginForm').hidden = true;
+      renderClaimTeamOptions();
+    });
+    document.getElementById('showLeaderLogin').addEventListener('click', () => {
+      document.getElementById('leaderLoginForm').hidden = false;
+      document.getElementById('claimTeamForm').hidden = true;
+    });
+    document.getElementById('claimTeamForm').addEventListener('submit', async event => {
+      event.preventDefault();
+      if (!auth || !db) { leaderAuthStatus.textContent = 'Firebase is not configured. Add your project settings first.'; return; }
+      const team = currentTeams.find(item => item.id === claimTeamSelect.value);
+      if (!team || team.leaderUid) { leaderAuthStatus.textContent = 'That team is no longer available to claim. Choose another team.'; renderClaimTeamOptions(); return; }
+      const email = document.getElementById('claimEmail').value.trim();
+      const password = document.getElementById('claimPassword').value;
+      if (ADMIN_EMAILS.some(adminEmail => adminEmail.toLowerCase() === email.toLowerCase())) { leaderAuthStatus.textContent = 'Admin email addresses are reserved for Admin access and cannot claim a team.'; return; }
+      const button = document.getElementById('claimTeamButton'); button.disabled = true; leaderAuthStatus.textContent = 'Creating your account and claiming the team…';
+      try {
+        const credential = await createUserWithEmailAndPassword(auth, email, password);
+        await runTransaction(db, async transaction => {
+          const teamRef = doc(db, 'teams', team.id);
+          const freshTeam = await transaction.get(teamRef);
+          if (!freshTeam.exists() || freshTeam.data().leaderUid) throw new Error('TEAM_ALREADY_CLAIMED');
+          transaction.update(teamRef, { leaderUid: credential.user.uid, leaderEmail: credential.user.email });
+        });
+        leaderAuthStatus.textContent = `${team.name} has been claimed. You are now signed in as its Team Leader.`;
+        event.currentTarget.reset(); renderClaimTeamOptions(); toast(`${team.name} claimed successfully.`);
+      } catch (error) {
+        console.error(error);
+        if (error.message === 'TEAM_ALREADY_CLAIMED') leaderAuthStatus.textContent = 'Someone else claimed that team first. Please choose another unclaimed team.';
+        else if (error.code === 'auth/email-already-in-use') leaderAuthStatus.textContent = 'That email already has an account. Use Team Leader Login instead.';
+        else if (error.code === 'auth/weak-password') leaderAuthStatus.textContent = 'Choose a stronger password (at least 6 characters).';
+        else leaderAuthStatus.textContent = 'Could not claim this team. Check your details and Firestore permissions.';
+      } finally { button.disabled = false; }
+    });
+    document.getElementById('leaderLoginForm').addEventListener('submit', async event => {
+      event.preventDefault();
+      if (!auth) { leaderAuthStatus.textContent = 'Firebase is not configured. Add your project settings first.'; return; }
+      const button = document.getElementById('leaderLoginButton'); button.disabled = true; leaderAuthStatus.textContent = 'Signing in…';
+      try {
+        await signInWithEmailAndPassword(auth, document.getElementById('leaderEmail').value.trim(), document.getElementById('leaderPassword').value);
+        event.currentTarget.reset();
+      } catch (error) { console.error(error); leaderAuthStatus.textContent = 'Team Leader login failed. Check your email and password.'; }
+      finally { button.disabled = false; }
+    });
+    document.getElementById('leaderLogoutButton').addEventListener('click', async () => {
+      try { await signOut(auth); toast('Team Leader logged out.'); }
+      catch (error) { console.error(error); toast('Could not log out. Try again.'); }
+    });
     document.getElementById('adminLogoutButton').addEventListener('click', async () => {
       if (!auth) return;
       try { await signOut(auth); adminAuthStatus.textContent = 'You have been signed out.'; toast('Logged out.'); }
       catch (error) { console.error(error); toast('Could not log out. Try again.'); }
     });
+    document.getElementById('deniedLogoutButton').addEventListener('click', async () => {
+      try { await signOut(auth); toast('Logged out.'); }
+      catch (error) { console.error(error); toast('Could not log out. Try again.'); }
+    });
     if (auth) {
       onAuthStateChanged(auth, user => {
-        const signedIn = Boolean(user);
-        adminLoginPanel.hidden = signedIn;
-        adminControls.hidden = !signedIn;
-        adminSignedInEmail.textContent = user?.email || '';
-        if (!signedIn) adminAuthStatus.textContent = 'Sign in to manage teams and leaderboard settings.';
+        authUser = user;
+        const isAdmin = isAdminUser(user);
+        adminLoginPanel.hidden = Boolean(user);
+        adminDeniedPanel.hidden = !user || isAdmin;
+        adminControls.hidden = !isAdmin;
+        adminSignedInEmail.textContent = isAdmin ? user.email : '';
+        if (!user) adminAuthStatus.textContent = 'Sign in to manage teams and leaderboard settings.';
+        syncLeaderTeam();
       });
     } else {
-      adminLoginPanel.hidden = false; adminControls.hidden = true;
+      authUser = null; adminLoginPanel.hidden = false; adminDeniedPanel.hidden = true; adminControls.hidden = true; renderVoteTab();
     }
     submitVoteButton.addEventListener('click', async () => {
-      if (!db) { voteStatus.textContent = 'Add Firebase config first. Your votes were not saved.'; return toast('Firebase is not configured.'); }
-      const voter = currentTeams.find(team => team.id === voterSelect.value);
-      if (!voter) return toast('Select your team first.');
-      const targets = currentTeams.filter(team => team.id !== voter.id);
-      if (!targets.length) return toast('There are no other teams to rate.');
-      const batch = writeBatch(db);
-      for (const team of targets) {
-        const card = voteTargets.querySelector(`[data-team-id="${team.id}"]`);
-        const scores = Object.fromEntries([...card.querySelectorAll('input[data-criterion]')].map(input => [input.dataset.criterion, Number(input.value)]));
-        if (Object.values(scores).some(score => !Number.isInteger(score) || score < 1 || score > 10)) return toast('Every score must be from 1 to 10.');
-        const total = Object.values(scores).reduce((sum, score) => sum + score, 0);
-        batch.set(doc(db, 'votes', `${voter.id}__${team.id}`), {
-          voterTeamId: voter.id, voterTeamName: voter.name,
-          ratedTeamId: team.id, ratedTeamName: team.name,
-          criteria: scores, total, maxScore: 30, updatedAt: serverTimestamp()
-        });
-      }
-      submitVoteButton.disabled = true; voteStatus.textContent = 'Saving your votes…';
+      if (!db || !authUser || !leaderTeam || !activeVotingTeamId) return toast('Voting is not open for your team.');
+      const target = currentTeams.find(team => team.id === activeVotingTeamId);
+      if (!target || target.id === leaderTeam.id) return toast('Your team cannot vote for itself.');
+      const voteId = `${leaderTeam.id}_${target.id}`;
+      if (currentVotes.some(vote => vote.id === voteId)) { renderVoteTab(); return toast('Your team has already voted for this team.'); }
+      const card = voteTargets.querySelector(`[data-team-id="${target.id}"]`);
+      const scores = Object.fromEntries([...card.querySelectorAll('input[data-criterion]')].map(input => [input.dataset.criterion, Number(input.value)]));
+      if (Object.values(scores).some(score => !Number.isInteger(score) || score < 1 || score > 10)) return toast('Every score must be from 1 to 10.');
+      const total = Object.values(scores).reduce((sum, score) => sum + score, 0);
+      submitVoteButton.disabled = true; voteStatus.textContent = 'Saving your vote…';
       try {
-        await batch.commit();
-        voteStatus.textContent = `Your votes for ${targets.length} ${targets.length === 1 ? 'team' : 'teams'} were saved.`;
-        toast('Votes submitted successfully.');
+        await setDoc(doc(db, 'votes', voteId), {
+          voterTeamId: leaderTeam.id,
+          voterTeamName: leaderTeam.name,
+          targetTeamId: target.id,
+          targetTeamName: target.name,
+          ideaExecution: scores.ideaExecution,
+          aiUtilization: scores.aiUtilization,
+          presentation: scores.presentation,
+          criteria: scores,
+          total,
+          timestamp: serverTimestamp()
+        });
+        voteStatus.textContent = `Vote submitted for ${target.name}. Waiting for the next team...`;
+        toast('Vote submitted successfully.');
       } catch (error) {
-        console.error(error); voteStatus.textContent = 'Could not save votes. Check Firestore permissions.'; toast('Could not save votes.');
-      } finally { submitVoteButton.disabled = false; }
+        console.error(error); voteStatus.textContent = 'Could not save your vote. Check Firestore permissions.'; toast('Could not save vote.'); submitVoteButton.disabled = false;
+      }
     });
-    if (!db) { renderAdminTeams([]); renderVoteTargets(); renderLeaderboard(); }
+    if (!db) { renderAdminTeams([]); renderClaimTeamOptions(); renderLeaderboard(); renderVoteTab(); }
     window.addEventListener('beforeunload', () => { unsubTeams?.(); unsubSettings?.(); unsubVotes?.(); });
   </script>
 </body>
