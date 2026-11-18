@@ -22,6 +22,7 @@
     .stat,.card{background:linear-gradient(145deg,#2a2036,#20182b);border-color:#49365e}.stat:after{border-color:#644b7d}.criterion,.range-card,.team-admin-row,.visibility-option{background:#20182b;border-color:#49365e}.visibility-option:has(input:checked){border-color:#a687c5;background:#352347}.visibility-option input{accent-color:#cdb2e7}.delete-team{border-color:#75516d;color:#f1c2d1;background:#382333}
     .select,.text-input{background:#191321;border-color:#59446d}.select:focus,.text-input:focus{border-color:#c7a8e6;box-shadow:0 0 0 3px #c7a8e622}.submit{background:#d7c0f2;color:#24152f}.submit:disabled{opacity:.45;cursor:not-allowed}.team-mark{background:#49365e;color:#f0e5fb}.mark-blue{background:#403150;color:#e0cafa}.mark-purple{background:#523a62;color:#efd7ff}.bar span{background:linear-gradient(90deg,#8d69b0,#dfc8f5)}
     .vote-targets{display:grid;gap:14px}.vote-team-card{padding:18px;background:#21182d;border:1px solid #49365e;border-radius:14px}.vote-team-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px}.vote-team-header h3{font:600 16px 'Space Grotesk',sans-serif;margin:0}.vote-total{font:600 13px 'Space Grotesk',sans-serif;color:#d7c0f2}.vote-ratings{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.vote-rating{padding:11px;background:#191321;border:1px solid #3e2e4e;border-radius:11px}.vote-rating label{font-size:11px;font-weight:600;display:block;margin-bottom:9px}.rating-line{display:flex;align-items:center;gap:9px}.rating-line input{width:100%;accent-color:#cbaee6}.rating-value{font-size:12px;font-weight:700;color:#d7c0f2;min-width:18px;text-align:right}
+    [hidden]{display:none!important}.admin-login{max-width:460px;margin:34px auto;padding:30px}.admin-login .card-title{font-size:19px;margin-top:14px}.admin-login .submit{width:100%}.login-mark{width:44px;height:44px;display:grid;place-items:center;border-radius:14px;background:linear-gradient(145deg,#76529a,#4c3267);color:white;font:700 23px 'Space Grotesk',sans-serif;box-shadow:0 8px 26px #0003}.admin-control-header{display:flex;align-items:center;justify-content:space-between;padding:15px 18px;margin:0 0 16px;border:1px solid #49365e;border-radius:14px;background:#241a31}.admin-session-label{font-size:9px;letter-spacing:.16em;color:#d6bbee;font-weight:700}.admin-session-email{font-size:13px;color:#f2eafa;margin-top:4px}
     @media(max-width:560px){.logo-slot.zaka-logo{width:74px;height:38px}.vote-ratings{grid-template-columns:1fr}.vote-team-card{padding:14px}}
   </style>
 </head>
@@ -53,7 +54,14 @@
         <div class="placeholder-note" id="voteStatus">Votes will be saved to Firestore when Firebase is configured.</div>
       </div>
     </section>
-    <section class="view" id="admin"><div class="eyebrow">Organizer tools</div><h1>Admin Panel.</h1><p class="subhead">Manage teams and control what the audience sees. Changes sync with Firestore when Firebase is configured.</p>
+    <section class="view" id="admin"><div class="eyebrow">Organizer tools</div><h1>Admin Panel.</h1><p class="subhead">Manage teams and control what the audience sees.</p>
+      <div class="card admin-login" id="adminLoginPanel"><div class="login-mark">Z</div><div class="card-title">Admin sign in</div><p class="card-copy">Sign in with your ZAKA event administrator account.</p>
+        <form id="adminLoginForm"><label class="field-label" for="adminEmail">Email</label><input class="text-input" type="email" id="adminEmail" autocomplete="username" required placeholder="admin@example.com" />
+          <label class="field-label" for="adminPassword" style="margin-top:15px">Password</label><input class="text-input" type="password" id="adminPassword" autocomplete="current-password" required placeholder="Enter your password" />
+          <button class="submit" type="submit" id="adminLoginButton">Login <span aria-hidden="true">→</span></button></form>
+        <p class="placeholder-note" id="adminAuthStatus" role="status">Sign in to manage teams and leaderboard settings.</p>
+      </div>
+      <div id="adminControls" hidden><div class="admin-control-header"><div><span class="admin-session-label">SIGNED IN</span><div id="adminSignedInEmail" class="admin-session-email"></div></div><button class="secondary" id="adminLogoutButton" type="button">Logout</button></div>
       <div class="admin-grid">
         <div class="card"><div class="card-title">Add a team</div><p class="card-copy">Enter team members separated by commas or new lines.</p>
           <form id="teamForm"><label class="field-label" for="teamName">Team name</label><input class="text-input" id="teamName" required maxlength="60" placeholder="e.g. Nova Vision" />
@@ -68,7 +76,7 @@
             <label class="visibility-option"><input type="radio" name="visibility" value="hideTop3"><span><strong>Hide Top 3</strong><small>Hide the first three places and scores</small></span></label>
           </div><div class="placeholder-note" id="settingsStatus">Connect Firebase to save visibility changes.</div>
         </div>
-      </div>
+      </div></div>
     </section>
   </main>
   <footer class="shell footer"><span>© 2026 <strong>ZAKA</strong> &nbsp;·&nbsp; Fun Challenge</span><span>Built for bold ideas.</span></footer><div class="toast" id="toast" role="status"></div>
@@ -76,7 +84,7 @@
     // Firebase v10 modular SDK setup. Add your Firebase project values below to enable it.
     import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js';
     import { getFirestore, collection, addDoc, deleteDoc, doc, onSnapshot, setDoc, writeBatch, serverTimestamp } from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js';
-    import { getAuth } from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js';
+    import { getAuth, signInWithEmailAndPassword, onAuthStateChanged, signOut } from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js';
 
     const firebaseConfig = {
       apiKey: 'AIzaSyCJH3t7zQIb5yrMsgsG5Kg6_osm7xvlXbs',
@@ -113,6 +121,12 @@
     const voteTeamHint = document.getElementById('voteTeamHint');
     const submitVoteButton = document.getElementById('submitVote');
     const voteStatus = document.getElementById('voteStatus');
+    const adminLoginPanel = document.getElementById('adminLoginPanel');
+    const adminControls = document.getElementById('adminControls');
+    const adminLoginForm = document.getElementById('adminLoginForm');
+    const adminLoginButton = document.getElementById('adminLoginButton');
+    const adminAuthStatus = document.getElementById('adminAuthStatus');
+    const adminSignedInEmail = document.getElementById('adminSignedInEmail');
     let currentTeams = [];
     let currentVotes = [];
     let visibilityState = 'showAll';
@@ -133,6 +147,7 @@
         info.append(name, members);
         const remove = document.createElement('button'); remove.type = 'button'; remove.className = 'delete-team'; remove.textContent = 'Delete'; remove.setAttribute('aria-label', `Delete ${team.name}`);
         remove.addEventListener('click', async () => {
+          if (!auth?.currentUser) return toast('Sign in as an admin before managing teams.');
           if (!window.confirm(`Delete team “${team.name}”?`)) return;
           try { await deleteDoc(doc(db, 'teams', team.id)); toast('Team deleted.'); }
           catch (error) { console.error(error); toast('Could not delete team. Check Firestore permissions.'); }
@@ -267,6 +282,7 @@
 
     document.getElementById('teamForm').addEventListener('submit', async event => {
       event.preventDefault();
+      if (!auth?.currentUser) return toast('Sign in as an admin before managing teams.');
       if (!db) return toast('Add Firebase config first to save teams.');
       const name = document.getElementById('teamName').value.trim();
       const members = document.getElementById('teamMembers').value.split(/[\n,]+/).map(member => member.trim()).filter(Boolean);
@@ -281,6 +297,7 @@
     });
 
     document.querySelectorAll('input[name="visibility"]').forEach(input => input.addEventListener('change', async () => {
+      if (!auth?.currentUser) { applyVisibility(visibilityState); return toast('Sign in as an admin to change visibility.'); }
       applyVisibility(input.value);
       if (!db) { settingsStatus.textContent = 'Preview only — add Firebase config to persist this setting.'; return; }
       settingsStatus.textContent = 'Saving visibility setting…';
@@ -332,6 +349,36 @@
     function toast(message) {
       const el = document.getElementById('toast'); el.textContent = message; el.classList.add('show');
       window.setTimeout(() => el.classList.remove('show'), 2500);
+    }
+    adminLoginForm.addEventListener('submit', async event => {
+      event.preventDefault();
+      if (!auth) { adminAuthStatus.textContent = 'Firebase is not configured. Add your project settings before signing in.'; return; }
+      adminLoginButton.disabled = true; adminAuthStatus.textContent = 'Signing in…';
+      try {
+        await signInWithEmailAndPassword(auth, document.getElementById('adminEmail').value.trim(), document.getElementById('adminPassword').value);
+        adminAuthStatus.textContent = 'Signed in successfully.'; adminLoginForm.reset();
+      } catch (error) {
+        console.error(error);
+        adminAuthStatus.textContent = error.code === 'auth/too-many-requests'
+          ? 'Too many attempts. Please wait and try again.'
+          : 'Sign-in failed. Check your email and password.';
+      } finally { adminLoginButton.disabled = false; }
+    });
+    document.getElementById('adminLogoutButton').addEventListener('click', async () => {
+      if (!auth) return;
+      try { await signOut(auth); adminAuthStatus.textContent = 'You have been signed out.'; toast('Logged out.'); }
+      catch (error) { console.error(error); toast('Could not log out. Try again.'); }
+    });
+    if (auth) {
+      onAuthStateChanged(auth, user => {
+        const signedIn = Boolean(user);
+        adminLoginPanel.hidden = signedIn;
+        adminControls.hidden = !signedIn;
+        adminSignedInEmail.textContent = user?.email || '';
+        if (!signedIn) adminAuthStatus.textContent = 'Sign in to manage teams and leaderboard settings.';
+      });
+    } else {
+      adminLoginPanel.hidden = false; adminControls.hidden = true;
     }
     submitVoteButton.addEventListener('click', async () => {
       if (!db) { voteStatus.textContent = 'Add Firebase config first. Your votes were not saved.'; return toast('Firebase is not configured.'); }
