@@ -1,0 +1,367 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#07131b" />
+  <title>ZAKA | Fun Challenge</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{--bg:#171020;--panel:#241a31;--panel2:#30213f;--line:#49365e;--text:#f8f5fb;--muted:#b6a9c3;--mint:#d7c0f2;--blue:#bda0e0;--gold:#ead8ff;--red:#ff9da9;--radius:18px}
+    *{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at 78% -15%,#123a43 0,transparent 38%),var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;min-height:100vh}button{font:inherit;color:inherit;cursor:pointer}.shell{max-width:1240px;margin:auto;padding:0 34px}.topbar{height:82px;border-bottom:1px solid #19313a;display:flex;align-items:center;position:sticky;top:0;background:#07131beF;backdrop-filter:blur(16px);z-index:5}.top-inner{display:flex;align-items:center;justify-content:space-between;width:100%}.brand{display:flex;align-items:center;gap:12px}.logo-slot{width:42px;height:42px;border:1px dashed #4a7778;border-radius:13px;display:grid;place-items:center;color:var(--mint);font-size:10px;font-weight:800;letter-spacing:.06em;background:#102a31}.brand-name{font-family:'Space Grotesk',sans-serif;font-size:18px;font-weight:700;letter-spacing:.13em}.brand-sub{font-size:10px;color:var(--muted);letter-spacing:.18em;margin-top:2px}.nav{display:flex;gap:5px;background:#0c1b24;padding:5px;border:1px solid var(--line);border-radius:13px}.nav button{border:0;background:transparent;color:#91a8af;padding:10px 17px;border-radius:9px;font-size:13px;font-weight:600;transition:.2s}.nav button:hover{color:var(--text);background:#142a34}.nav button.active{background:#173a3c;color:var(--mint);box-shadow:inset 0 0 0 1px #285b58}.right-top{display:flex;align-items:center;gap:10px}.live{display:flex;align-items:center;gap:8px;color:#9db3b7;font-size:12px}.dot{height:7px;width:7px;border-radius:50%;background:var(--mint);box-shadow:0 0 12px var(--mint)}.avatar{width:35px;height:35px;border-radius:11px;background:#1b3840;color:#b7d7d2;display:grid;place-items:center;font-size:11px;font-weight:700}.mobile-menu{display:none;border:1px solid var(--line);background:#10232d;border-radius:10px;padding:9px 12px}.main{padding-top:44px;padding-bottom:60px}.eyebrow{font-size:11px;text-transform:uppercase;letter-spacing:.2em;color:var(--mint);font-weight:700;display:flex;align-items:center;gap:10px}.eyebrow:before{content:'';height:1px;width:22px;background:var(--mint)}h1,h2,h3,p{margin-top:0}h1{font:600 clamp(34px,5vw,54px)/1.1 'Space Grotesk',sans-serif;letter-spacing:-.04em;margin:17px 0 12px}.subhead{color:#91a8af;max-width:620px;line-height:1.65;font-size:15px;margin-bottom:27px}.hero-row{display:flex;justify-content:space-between;align-items:end;gap:20px;margin-bottom:30px}.event-pill{display:flex;align-items:center;gap:11px;background:#0d2029;border:1px solid var(--line);border-radius:12px;padding:11px 15px;color:#a5bbc0;font-size:12px}.event-icon{height:29px;width:29px;border-radius:9px;background:#193a3b;color:var(--mint);display:grid;place-items:center;font-size:15px}.event-pill strong{display:block;color:var(--text);font-size:12px;margin-bottom:2px}.section-head{display:flex;align-items:center;justify-content:space-between;margin:33px 0 15px}.section-head h2{font:600 19px 'Space Grotesk',sans-serif;margin:0}.section-head .hint{color:var(--muted);font-size:12px}.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.stat,.card{background:linear-gradient(145deg,#10242d,#0b1a23);border:1px solid var(--line);border-radius:var(--radius)}.stat{padding:20px 22px;position:relative;overflow:hidden}.stat:after{content:'';position:absolute;width:90px;height:90px;border:1px solid #183e45;border-radius:50%;right:-30px;top:-38px}.stat-label{color:#91a8af;font-size:12px}.stat-value{font:600 28px 'Space Grotesk',sans-serif;margin-top:11px}.stat-note{font-size:11px;color:#718b91;margin-top:4px}.stat-accent{color:var(--mint)}.board{overflow:hidden}.table-head,.team-row{display:grid;grid-template-columns:72px minmax(180px,1.5fr) 1fr 130px 100px;align-items:center;gap:16px;padding:16px 20px}.table-head{font-size:10px;color:#738f95;text-transform:uppercase;letter-spacing:.13em;border-bottom:1px solid var(--line)}.team-row{border-bottom:1px solid #142b34;min-height:72px}.team-row:last-child{border-bottom:0}.rank{font:600 14px 'Space Grotesk',sans-serif;color:#a5bbc0}.medal{color:var(--gold)}.team-name{font-weight:700;font-size:14px;display:flex;align-items:center;gap:11px}.team-mark{height:34px;width:34px;border-radius:11px;display:grid;place-items:center;font-size:11px;font-weight:800;background:#1d3b43;color:#8de2d0}.mark-blue{background:#1c3247;color:#7fc2ff}.mark-purple{background:#322a48;color:#c4a6ff}.team-meta{display:block;font-size:11px;color:#789097;font-weight:400;margin-top:3px}.score{font:600 16px 'Space Grotesk',sans-serif}.score small{font:400 10px 'DM Sans',sans-serif;color:#71888e}.bar{height:5px;background:#183039;border-radius:9px;overflow:hidden;margin-top:7px;max-width:165px}.bar span{height:100%;display:block;background:linear-gradient(90deg,#34bfa1,#78e8ce);border-radius:9px}.votes{color:#90a7ad;font-size:12px}.trend{color:var(--mint);font-size:12px}.empty-tag{border:1px solid #25444a;color:#8aa6a7;font-size:10px;border-radius:20px;padding:5px 9px;width:max-content}.two-col{display:grid;grid-template-columns:1.25fr .75fr;gap:15px}.card{padding:23px}.card-title{font:600 16px 'Space Grotesk',sans-serif;margin-bottom:6px}.card-copy{color:#829ba0;font-size:12px;line-height:1.55;margin-bottom:18px}.criteria-list{display:grid;gap:10px}.criterion{display:flex;align-items:center;justify-content:space-between;background:#0b1a22;border:1px solid #18313a;border-radius:12px;padding:13px 14px}.criterion-label{font-size:13px;font-weight:600}.criterion-sub{font-size:10px;color:#81999e;margin-top:3px}.points{font:600 12px 'Space Grotesk',sans-serif;color:var(--mint)}.progress-wrap{display:grid;gap:17px;margin-top:20px}.progress-item{display:grid;grid-template-columns:1fr auto;gap:8px;font-size:11px;color:#9cb1b5}.progress-item strong{color:#e8f2f0;font:600 12px 'Space Grotesk',sans-serif}.progress-line{grid-column:1/-1;height:5px;border-radius:9px;background:#19313a}.progress-line span{height:100%;display:block;border-radius:9px;background:var(--blue)}.vote-panel{max-width:790px}.field-label{font-size:12px;font-weight:600;color:#c3d4d5;display:block;margin-bottom:8px}.select,.text-input{width:100%;background:#091820;color:var(--text);border:1px solid #24404a;border-radius:11px;padding:13px 14px;outline:none;font:13px 'DM Sans',sans-serif}.select:focus,.text-input:focus{border-color:#4ec9ab;box-shadow:0 0 0 3px #36bd9b1a}.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}.range-card{border:1px solid #1c3740;background:#0a1a22;border-radius:13px;padding:14px}.range-top{display:flex;justify-content:space-between;gap:14px;margin-bottom:10px}.range-top strong{font-size:12px}.range-top span{font-size:11px;color:#86a0a3}.range-line{width:100%;accent-color:var(--mint)}.score-output{color:var(--mint);font-weight:700}.submit{border:0;background:var(--mint);color:#062019;padding:13px 20px;border-radius:10px;font-weight:800;font-size:13px;margin-top:19px}.submit:hover{filter:brightness(1.08);transform:translateY(-1px)}.admin-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}.admin-action{display:flex;justify-content:space-between;align-items:center;border-top:1px solid #1b323a;padding:14px 0}.admin-action:first-of-type{border-top:0}.action-name{font-size:13px;font-weight:600}.action-copy{color:#829a9f;font-size:11px;margin-top:3px}.secondary{background:#122a33;border:1px solid #284750;border-radius:9px;padding:9px 12px;font-size:11px;color:#c1d2d2}.toggle{height:23px;width:40px;border-radius:20px;background:#235c52;padding:3px;display:flex;justify-content:flex-end}.toggle:after{content:'';width:17px;height:17px;border-radius:50%;background:#70e6c6}.toast{position:fixed;bottom:23px;left:50%;transform:translate(-50%,20px);opacity:0;background:#183b36;border:1px solid #317762;border-radius:11px;padding:12px 16px;font-size:12px;z-index:9;transition:.25s;pointer-events:none}.toast.show{opacity:1;transform:translate(-50%,0)}.view{display:none;animation:fade .28s ease}.view.active{display:block}@keyframes fade{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:translateY(0)}}.footer{border-top:1px solid #183039;padding:20px 0;color:#71888d;font-size:11px;display:flex;justify-content:space-between}.footer strong{color:#9ab4b3;letter-spacing:.12em}.placeholder-note{color:#728b91;font-size:11px;margin-top:14px}
+    @media(max-width:800px){.shell{padding:0 20px}.right-top .live{display:none}.hero-row{align-items:start;flex-direction:column}.stats{gap:9px}.stat{padding:16px}.two-col{grid-template-columns:1fr}.table-head,.team-row{grid-template-columns:40px minmax(130px,1.3fr) 1fr 75px;gap:9px;padding:14px 12px}.table-head .hide-sm,.team-row .hide-sm{display:none}.table-head{font-size:9px}.team-name{font-size:12px}.team-mark{height:30px;width:30px}.score{font-size:14px}.admin-grid{grid-template-columns:1fr}}
+    @media(max-width:560px){.shell{padding:0 16px}.topbar{height:auto;min-height:70px}.top-inner{flex-wrap:wrap;padding:12px 0}.brand-name{font-size:15px}.logo-slot{width:37px;height:37px}.mobile-menu{display:block}.nav{display:none;order:3;width:100%;margin-top:11px}.nav.open{display:flex}.nav button{flex:1;padding:10px 5px;font-size:11px}.main{padding-top:30px}.stats{grid-template-columns:1fr 1fr}.stat:last-child{grid-column:1/-1}.stat-value{font-size:24px}.table-head,.team-row{grid-template-columns:31px minmax(110px,1fr) 58px;gap:8px;padding:12px 9px}.table-head .hide-sm,.team-row .hide-sm{display:none}.team-name{gap:7px}.team-mark{height:27px;width:27px;font-size:9px}.votes{font-size:10px}.form-grid{grid-template-columns:1fr}.event-pill{font-size:11px}.footer{font-size:10px}}
+    .visibility-options{display:grid;gap:11px}.visibility-option{display:flex;align-items:center;gap:12px;padding:15px;background:#0b1a22;border:1px solid #1c3740;border-radius:12px;cursor:pointer}.visibility-option:has(input:checked){border-color:#3c8b78;background:#102923}.visibility-option input{accent-color:var(--mint);width:16px;height:16px}.visibility-option strong,.visibility-option small{display:block}.visibility-option strong{font-size:13px}.visibility-option small{font-size:11px;color:#829a9f;margin-top:4px}.team-admin-row{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:13px 14px;background:#0b1a22;border:1px solid #18313a;border-radius:12px}.team-admin-row strong{font-size:13px}.team-admin-row small{display:block;color:#81999e;font-size:11px;margin-top:4px}.delete-team{border:1px solid #613d42;color:#ffaaa4;background:#2a1b22;border-radius:8px;padding:8px 10px;font-size:11px}.leaderboard-hidden{border:1px solid var(--line);background:#0d2029;border-radius:var(--radius);padding:30px;text-align:center;color:#9bb1b5}.team-row.top-hidden{filter:blur(5px);user-select:none;pointer-events:none}
+    /* ZAKA Community purple and white brand treatment */
+    body{background:radial-gradient(ellipse at 78% -15%,#4b3265 0,transparent 42%),var(--bg)}
+    .topbar{background:#171020ef;border-bottom-color:#49365e}.logo-slot.zaka-logo{width:92px;height:43px;object-fit:cover;object-position:center 52%;border:0;border-radius:5px;background:#5a3a78;display:block}
+    .nav{background:#21182d;border-color:#49365e}.nav button.active{background:#51366c;color:#fff;box-shadow:inset 0 0 0 1px #7b5c98}.nav button:hover{background:#352347}
+    .dot{background:#d8c1f1;box-shadow:0 0 12px #d8c1f1}.eyebrow,.points,.score-output,.stat-accent,.trend{color:#d6bbee}.eyebrow:before{background:#d6bbee}
+    .stat,.card{background:linear-gradient(145deg,#2a2036,#20182b);border-color:#49365e}.stat:after{border-color:#644b7d}.criterion,.range-card,.team-admin-row,.visibility-option{background:#20182b;border-color:#49365e}.visibility-option:has(input:checked){border-color:#a687c5;background:#352347}.visibility-option input{accent-color:#cdb2e7}.delete-team{border-color:#75516d;color:#f1c2d1;background:#382333}
+    .select,.text-input{background:#191321;border-color:#59446d}.select:focus,.text-input:focus{border-color:#c7a8e6;box-shadow:0 0 0 3px #c7a8e622}.submit{background:#d7c0f2;color:#24152f}.submit:disabled{opacity:.45;cursor:not-allowed}.team-mark{background:#49365e;color:#f0e5fb}.mark-blue{background:#403150;color:#e0cafa}.mark-purple{background:#523a62;color:#efd7ff}.bar span{background:linear-gradient(90deg,#8d69b0,#dfc8f5)}
+    .vote-targets{display:grid;gap:14px}.vote-team-card{padding:18px;background:#21182d;border:1px solid #49365e;border-radius:14px}.vote-team-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px}.vote-team-header h3{font:600 16px 'Space Grotesk',sans-serif;margin:0}.vote-total{font:600 13px 'Space Grotesk',sans-serif;color:#d7c0f2}.vote-ratings{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.vote-rating{padding:11px;background:#191321;border:1px solid #3e2e4e;border-radius:11px}.vote-rating label{font-size:11px;font-weight:600;display:block;margin-bottom:9px}.rating-line{display:flex;align-items:center;gap:9px}.rating-line input{width:100%;accent-color:#cbaee6}.rating-value{font-size:12px;font-weight:700;color:#d7c0f2;min-width:18px;text-align:right}
+    @media(max-width:560px){.logo-slot.zaka-logo{width:74px;height:38px}.vote-ratings{grid-template-columns:1fr}.vote-team-card{padding:14px}}
+  </style>
+</head>
+<body>
+  <header class="topbar"><div class="shell top-inner">
+    <div class="brand"><img class="logo-slot zaka-logo" src="assets/zaka-community-logo.jpg" alt="ZAKA Community logo" /><div><div class="brand-name">ZAKA</div><div class="brand-sub">FUN CHALLENGE</div></div></div>
+    <nav class="nav" id="mainNav" aria-label="Main navigation">
+      <button class="active" data-view="leaderboard">Leaderboard</button><button data-view="vote">Vote</button><button data-view="admin">Admin Panel</button>
+    </nav>
+    <div class="right-top"><div class="live"><span class="dot"></span> Challenge in progress</div><div class="avatar" title="Admin">ZA</div><button class="mobile-menu" id="menuToggle" aria-label="Open navigation">☰</button></div>
+  </div></header>
+  <main class="shell main">
+    <section class="view active" id="leaderboard">
+      <div class="hero-row"><div><div class="eyebrow">Build · Create · Compete</div><h1>Ideas in action.</h1><p class="subhead">One challenge. A room full of possibilities. See how the teams are shaping the future, one bold idea at a time.</p></div><div class="event-pill"><div class="event-icon">✳</div><div><strong>ZAKA Fun Challenge</strong>Season 01 &nbsp;·&nbsp; Live event</div></div></div>
+      <div class="stats"><div class="stat"><div class="stat-label">Teams competing</div><div class="stat-value" id="teamStat">0</div><div class="stat-note">All teams ready to build</div></div><div class="stat"><div class="stat-label">Votes submitted</div><div class="stat-value" id="voteStat">0 <span class="stat-accent">↗</span></div><div class="stat-note">Peer reviews across the room</div></div><div class="stat"><div class="stat-label">Scoring criteria</div><div class="stat-value">03</div><div class="stat-note">Equal weight · scored out of 10</div></div></div>
+      <div class="section-head"><h2>Leaderboard</h2><span class="hint">Ranked by average peer score</span></div>
+      <div class="card board"><div class="table-head"><span>Rank</span><span>Team</span><span class="hide-sm">Votes</span><span>Avg. score / 30</span><span class="hide-sm">Status</span></div>
+        <div id="leaderboardRows"></div>
+      </div><p class="placeholder-note" id="leaderboardStatus">Waiting for live Firestore results…</p>
+      <div class="section-head"><h2>What teams are judged on</h2><span class="hint">Three criteria · equal weight</span></div>
+      <div class="two-col"><div class="card"><div class="card-title">The scorecard</div><p class="card-copy">Every team gets a fair shot. Cast thoughtful votes across the three pillars of the challenge.</p><div class="criteria-list"><div class="criterion"><div><div class="criterion-label">Idea &amp; Execution</div><div class="criterion-sub">Originality, usefulness, and how well it works</div></div><span class="points">1 — 10</span></div><div class="criterion"><div><div class="criterion-label">AI Utilization</div><div class="criterion-sub">Creative use of Alibaba AI to build without manual coding</div></div><span class="points">1 — 10</span></div><div class="criterion"><div><div class="criterion-label">Presentation</div><div class="criterion-sub">A clear, engaging story that brings the idea to life</div></div><span class="points">1 — 10</span></div></div></div><div class="card"><div class="card-title">Score breakdown</div><p class="card-copy">Nova Vision · average across submitted peer reviews</p><div class="progress-wrap"><div class="progress-item"><span>Idea &amp; Execution</span><strong>9.4</strong><div class="progress-line"><span style="width:94%"></span></div></div><div class="progress-item"><span>AI Utilization</span><strong>9.1</strong><div class="progress-line"><span style="width:91%;background:#a78bfa"></span></div></div><div class="progress-item"><span>Presentation</span><strong>9.0</strong><div class="progress-line"><span style="width:90%;background:#f4c56b"></span></div></div></div></div></div>
+    </section>
+    <section class="view" id="vote"><div class="eyebrow">Peer review</div><h1>Cast your votes.</h1><p class="subhead">Choose your team, then score every other team. Your team is excluded automatically.</p>
+      <div class="card vote-panel"><div class="card-title">Your team</div><p class="card-copy">Scores are from 1 to 10 for each criterion. The total for each team is out of 30.</p>
+        <label class="field-label" for="voter">Select your team</label><select class="select" id="voter"><option value="">Loading teams…</option></select>
+        <div class="section-head" style="margin-top:25px"><h2>Teams to rate</h2><span class="hint" id="voteTeamHint">Choose your team first</span></div>
+        <div id="voteTargets" class="vote-targets"><p class="placeholder-note">Select your team to see the other teams.</p></div>
+        <button class="submit" id="submitVote" disabled>Submit Votes <span aria-hidden="true">→</span></button>
+        <div class="placeholder-note" id="voteStatus">Votes will be saved to Firestore when Firebase is configured.</div>
+      </div>
+    </section>
+    <section class="view" id="admin"><div class="eyebrow">Organizer tools</div><h1>Admin Panel.</h1><p class="subhead">Manage teams and control what the audience sees. Changes sync with Firestore when Firebase is configured.</p>
+      <div class="admin-grid">
+        <div class="card"><div class="card-title">Add a team</div><p class="card-copy">Enter team members separated by commas or new lines.</p>
+          <form id="teamForm"><label class="field-label" for="teamName">Team name</label><input class="text-input" id="teamName" required maxlength="60" placeholder="e.g. Nova Vision" />
+            <label class="field-label" for="teamMembers" style="margin-top:15px">Team members</label><textarea class="text-input" id="teamMembers" required rows="3" placeholder="Names separated by commas or new lines" style="resize:vertical"></textarea>
+            <button class="submit" type="submit" id="addTeamButton">Add team <span aria-hidden="true">→</span></button></form>
+          <div class="section-head" style="margin-top:26px"><h2>Teams</h2><span class="hint" id="teamCount">0 teams</span></div><div id="adminTeamList" class="criteria-list"><p class="placeholder-note">No teams have been added.</p></div>
+        </div>
+        <div class="card"><div class="card-title">Leaderboard visibility</div><p class="card-copy">Choose what visitors can see. The selection is saved and synced live.</p>
+          <div class="visibility-options" role="radiogroup" aria-label="Leaderboard visibility">
+            <label class="visibility-option"><input type="radio" name="visibility" value="showAll"><span><strong>Show All</strong><small>Show every team and score</small></span></label>
+            <label class="visibility-option"><input type="radio" name="visibility" value="hideAll"><span><strong>Hide All</strong><small>Hide leaderboard results from visitors</small></span></label>
+            <label class="visibility-option"><input type="radio" name="visibility" value="hideTop3"><span><strong>Hide Top 3</strong><small>Hide the first three places and scores</small></span></label>
+          </div><div class="placeholder-note" id="settingsStatus">Connect Firebase to save visibility changes.</div>
+        </div>
+      </div>
+    </section>
+  </main>
+  <footer class="shell footer"><span>© 2026 <strong>ZAKA</strong> &nbsp;·&nbsp; Fun Challenge</span><span>Built for bold ideas.</span></footer><div class="toast" id="toast" role="status"></div>
+  <script type="module">
+    // Firebase v10 modular SDK setup. Add your Firebase project values below to enable it.
+    import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js';
+    import { getFirestore, collection, addDoc, deleteDoc, doc, onSnapshot, setDoc, writeBatch, serverTimestamp } from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js';
+    import { getAuth } from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js';
+
+    const firebaseConfig = {
+      apiKey: 'AIzaSyCJH3t7zQIb5yrMsgsG5Kg6_osm7xvlXbs',
+      authDomain: 'zaka-fun-challenge.firebaseapp.com',
+      projectId: 'zaka-fun-challenge',
+      storageBucket: 'zaka-fun-challenge.firebasestorage.app',
+      messagingSenderId: '557317809025',
+      appId: '1:557317809025:web:ee582613c4e33df69e7e80'
+    };
+    let app, db, auth;
+    if (firebaseConfig.apiKey && firebaseConfig.projectId) {
+      app = initializeApp(firebaseConfig);
+      db = getFirestore(app);
+      auth = getAuth(app);
+      console.info('Firebase connected. Configure database rules and authentication before launch.');
+    } else {
+      console.info('Firebase is not configured yet. Add your Firebase config to enable cloud features.');
+    }
+
+    const nav = document.getElementById('mainNav');
+    const menuToggle = document.getElementById('menuToggle');
+    const teamsRef = () => collection(db, 'teams');
+    const votesRef = () => collection(db, 'votes');
+    const settingsRef = () => doc(db, 'settings', 'leaderboard');
+    const teamList = document.getElementById('adminTeamList');
+    const teamCount = document.getElementById('teamCount');
+    const settingsStatus = document.getElementById('settingsStatus');
+    const leaderboardRows = document.getElementById('leaderboardRows');
+    const leaderboardStatus = document.getElementById('leaderboardStatus');
+    const teamStat = document.getElementById('teamStat');
+    const voteStat = document.getElementById('voteStat');
+    const voterSelect = document.getElementById('voter');
+    const voteTargets = document.getElementById('voteTargets');
+    const voteTeamHint = document.getElementById('voteTeamHint');
+    const submitVoteButton = document.getElementById('submitVote');
+    const voteStatus = document.getElementById('voteStatus');
+    let currentTeams = [];
+    let currentVotes = [];
+    let visibilityState = 'showAll';
+    let unsubTeams, unsubSettings, unsubVotes;
+
+    function renderAdminTeams(teams) {
+      currentTeams = teams;
+      teamCount.textContent = `${teams.length} ${teams.length === 1 ? 'team' : 'teams'}`;
+      teamList.replaceChildren();
+      if (!teams.length) {
+        const empty = document.createElement('p'); empty.className = 'placeholder-note'; empty.textContent = 'No teams have been added.'; teamList.append(empty); return;
+      }
+      teams.forEach(team => {
+        const row = document.createElement('div'); row.className = 'team-admin-row';
+        const info = document.createElement('div');
+        const name = document.createElement('strong'); name.textContent = team.name;
+        const members = document.createElement('small'); members.textContent = (team.members || []).join(' · ') || 'No members listed';
+        info.append(name, members);
+        const remove = document.createElement('button'); remove.type = 'button'; remove.className = 'delete-team'; remove.textContent = 'Delete'; remove.setAttribute('aria-label', `Delete ${team.name}`);
+        remove.addEventListener('click', async () => {
+          if (!window.confirm(`Delete team “${team.name}”?`)) return;
+          try { await deleteDoc(doc(db, 'teams', team.id)); toast('Team deleted.'); }
+          catch (error) { console.error(error); toast('Could not delete team. Check Firestore permissions.'); }
+        });
+        row.append(info, remove); teamList.append(row);
+      });
+    }
+
+    const voteCriteria = [
+      { key: 'ideaExecution', label: 'Idea & Execution' },
+      { key: 'aiUtilization', label: 'AI Utilization' },
+      { key: 'presentation', label: 'Presentation' }
+    ];
+    function renderVoteTargets() {
+      const voterId = voterSelect.value;
+      const targets = currentTeams.filter(team => team.id !== voterId);
+      voteTargets.replaceChildren();
+      if (!voterId || !targets.length) {
+        const prompt = document.createElement('p'); prompt.className = 'placeholder-note';
+        prompt.textContent = voterId ? 'No other teams are available to rate yet.' : 'Select your team to see the other teams.';
+        voteTargets.append(prompt); voteTeamHint.textContent = voterId ? 'No other teams' : 'Choose your team first'; submitVoteButton.disabled = true; return;
+      }
+      voteTeamHint.textContent = `${targets.length} ${targets.length === 1 ? 'team' : 'teams'}`;
+      targets.forEach(team => {
+        const card = document.createElement('article'); card.className = 'vote-team-card'; card.dataset.teamId = team.id;
+        const header = document.createElement('div'); header.className = 'vote-team-header';
+        const title = document.createElement('h3'); title.textContent = team.name;
+        const total = document.createElement('span'); total.className = 'vote-total'; total.textContent = 'Total: 15 / 30'; header.append(title, total);
+        const ratings = document.createElement('div'); ratings.className = 'vote-ratings';
+        voteCriteria.forEach(criterion => {
+          const field = document.createElement('div'); field.className = 'vote-rating';
+          const label = document.createElement('label'); label.textContent = criterion.label;
+          const line = document.createElement('div'); line.className = 'rating-line';
+          const input = document.createElement('input'); input.type = 'range'; input.min = '1'; input.max = '10'; input.step = '1'; input.value = '5'; input.dataset.criterion = criterion.key; input.setAttribute('aria-label', `${criterion.label} score for ${team.name}`);
+          const value = document.createElement('span'); value.className = 'rating-value'; value.textContent = '5';
+          input.addEventListener('input', () => { value.textContent = input.value; const sum = [...card.querySelectorAll('input[data-criterion]')].reduce((n, item) => n + Number(item.value), 0); total.textContent = `Total: ${sum} / 30`; });
+          line.append(input, value); field.append(label, line); ratings.append(field);
+        });
+        card.append(header, ratings); voteTargets.append(card);
+      });
+      submitVoteButton.disabled = false;
+    }
+    voterSelect.addEventListener('change', renderVoteTargets);
+
+    function applyVisibility(mode) {
+      visibilityState = mode;
+      document.querySelectorAll('input[name="visibility"]').forEach(input => { input.checked = input.value === mode; });
+      const stats = document.querySelector('.view#leaderboard .stats');
+      const board = document.querySelector('.view#leaderboard .board');
+      const note = document.getElementById('leaderboardStatus');
+      const breakdown = document.querySelector('.view#leaderboard .two-col > .card:last-child');
+      let hidden = document.getElementById('leaderboardHidden');
+      if (!hidden) {
+        hidden = document.createElement('div'); hidden.id = 'leaderboardHidden'; hidden.className = 'leaderboard-hidden';
+        hidden.textContent = 'Results are currently hidden by the Admin'; board.after(hidden);
+      }
+      if (mode === 'hideAll') {
+        stats.hidden = true; board.hidden = true; note.hidden = true; breakdown.hidden = true;
+        hidden.hidden = false;
+      } else {
+        stats.hidden = false; board.hidden = false; note.hidden = false; breakdown.hidden = mode === 'hideTop3';
+        hidden.hidden = true;
+        renderLeaderboard();
+      }
+    }
+
+    function renderLeaderboard() {
+      const voteTotals = new Map();
+      currentVotes.forEach(vote => {
+        const ratedTeamId = vote.ratedTeamId || vote.teamId;
+        if (!ratedTeamId) return;
+        let total = Number(vote.total);
+        const criteria = vote.criteria || {};
+        if (!Number.isFinite(total)) total = Number(criteria.ideaExecution || 0) + Number(criteria.aiUtilization || 0) + Number(criteria.presentation || 0);
+        const aggregate = voteTotals.get(ratedTeamId) || { total: 0, count: 0, criteria: { ideaExecution: 0, aiUtilization: 0, presentation: 0 } };
+        aggregate.total += total; aggregate.count += 1;
+        Object.keys(aggregate.criteria).forEach(key => { aggregate.criteria[key] += Number(criteria[key] || 0); });
+        voteTotals.set(ratedTeamId, aggregate);
+      });
+      const ranked = currentTeams.map(team => {
+        const aggregate = voteTotals.get(team.id) || { total: 0, count: 0, criteria: { ideaExecution: 0, aiUtilization: 0, presentation: 0 } };
+        return { ...team, votesReceived: aggregate.count, average: aggregate.count ? aggregate.total / aggregate.count : 0, criteria: aggregate.criteria };
+      }).sort((a, b) => b.average - a.average || a.name.localeCompare(b.name));
+      teamStat.textContent = String(currentTeams.length);
+      voteStat.textContent = String(currentVotes.length);
+      const breakdown = document.querySelector('.view#leaderboard .two-col > .card:last-child');
+      const breakdownCopy = breakdown.querySelector('.card-copy');
+      const breakdownItems = [...breakdown.querySelectorAll('.progress-item')];
+      const leader = ranked[0];
+      breakdownCopy.textContent = leader ? `${leader.name} · average across ${leader.votesReceived} submitted peer reviews` : 'Scores will appear after teams and votes are added.';
+      breakdownItems.forEach((item, index) => {
+        const criteriaKey = voteCriteria[index]?.key;
+        const average = leader?.votesReceived ? leader.criteria[criteriaKey] / leader.votesReceived : 0;
+        item.querySelector('strong').textContent = leader?.votesReceived ? average.toFixed(1) : '—';
+        item.querySelector('.progress-line span').style.width = `${average * 10}%`;
+      });
+      leaderboardRows.replaceChildren();
+      if (!ranked.length) {
+        const empty = document.createElement('div'); empty.className = 'leaderboard-empty'; empty.textContent = 'Teams will appear here once the Admin adds them.'; leaderboardRows.append(empty);
+        leaderboardStatus.textContent = 'No teams found in Firestore.'; return;
+      }
+      ranked.forEach((team, index) => {
+        const rank = index + 1;
+        const masked = visibilityState === 'hideTop3' && rank <= 3;
+        const row = document.createElement('div'); row.className = 'team-row';
+        const rankCell = document.createElement('span'); rankCell.className = `rank${rank <= 3 ? ' medal' : ''}`; rankCell.textContent = String(rank).padStart(2, '0');
+        const teamCell = document.createElement('span'); teamCell.className = 'team-name';
+        if (masked) {
+          teamCell.textContent = '??? - Top Secret';
+        } else {
+          const initials = (team.name || '?').split(/\s+/).slice(0, 2).map(part => part[0] || '').join('').toUpperCase();
+          const mark = document.createElement('span'); mark.className = 'team-mark'; mark.textContent = initials;
+          const label = document.createElement('span'); label.append(document.createTextNode(team.name || 'Unnamed team'));
+          const meta = document.createElement('span'); meta.className = 'team-meta'; meta.textContent = `${(team.members || []).length} members`; label.append(meta);
+          teamCell.append(mark, label);
+        }
+        const votes = document.createElement('span'); votes.className = 'votes hide-sm'; votes.textContent = `${team.votesReceived} received`;
+        const score = document.createElement('span'); score.className = 'score';
+        if (masked) score.textContent = '???';
+        else {
+          const average = team.votesReceived ? team.average : 0;
+          score.append(document.createTextNode(team.votesReceived ? `${average.toFixed(1)} ` : '— '));
+          const bar = document.createElement('span'); bar.className = 'bar';
+          const fill = document.createElement('span'); fill.style.width = `${Math.max(0, Math.min(100, average / 30 * 100))}%`; bar.append(fill); score.append(bar);
+        }
+        const status = document.createElement('span'); status.className = `${rank === 1 && team.votesReceived ? 'trend' : 'empty-tag'} hide-sm`;
+        status.textContent = rank === 1 && team.votesReceived ? '↑ Leading' : team.votesReceived ? 'In the running' : 'Awaiting votes';
+        row.append(rankCell, teamCell, votes, score, status); leaderboardRows.append(row);
+      });
+      leaderboardStatus.textContent = 'Live results · ranked by average total score out of 30.';
+    }
+
+    document.getElementById('teamForm').addEventListener('submit', async event => {
+      event.preventDefault();
+      if (!db) return toast('Add Firebase config first to save teams.');
+      const name = document.getElementById('teamName').value.trim();
+      const members = document.getElementById('teamMembers').value.split(/[\n,]+/).map(member => member.trim()).filter(Boolean);
+      if (!name || !members.length) return toast('Enter a team name and at least one member.');
+      if (currentTeams.some(team => team.name.toLowerCase() === name.toLowerCase())) return toast('A team with that name already exists.');
+      const button = document.getElementById('addTeamButton'); button.disabled = true;
+      try {
+        await addDoc(teamsRef(), { name, members, createdAt: new Date().toISOString() });
+        event.currentTarget.reset(); toast('Team added.');
+      } catch (error) { console.error(error); toast('Could not add team. Check Firestore permissions.'); }
+      finally { button.disabled = false; }
+    });
+
+    document.querySelectorAll('input[name="visibility"]').forEach(input => input.addEventListener('change', async () => {
+      applyVisibility(input.value);
+      if (!db) { settingsStatus.textContent = 'Preview only — add Firebase config to persist this setting.'; return; }
+      settingsStatus.textContent = 'Saving visibility setting…';
+      try { await setDoc(settingsRef(), { leaderboardVisibility: input.value, updatedAt: new Date().toISOString() }, { merge: true }); }
+      catch (error) { console.error(error); settingsStatus.textContent = 'Could not save. Check Firestore permissions.'; toast('Could not save visibility setting.'); }
+    }));
+
+    if (db) {
+      settingsStatus.textContent = 'Listening for live updates…';
+      unsubTeams = onSnapshot(teamsRef(), snapshot => {
+        const teams = snapshot.docs.map(item => ({ id: item.id, ...item.data() })).sort((a, b) => a.name.localeCompare(b.name));
+        renderAdminTeams(teams);
+        const previousTeam = voterSelect.value;
+        voterSelect.replaceChildren();
+        const placeholder = document.createElement('option'); placeholder.value = ''; placeholder.textContent = teams.length ? 'Select your team' : 'No teams available'; voterSelect.append(placeholder);
+        teams.forEach(team => { const option = document.createElement('option'); option.value = team.id; option.textContent = team.name; voterSelect.append(option); });
+        if (teams.some(team => team.id === previousTeam)) voterSelect.value = previousTeam;
+        renderVoteTargets();
+        renderLeaderboard();
+      }, error => { console.error(error); settingsStatus.textContent = 'Could not read Firestore. Check your database rules.'; });
+      unsubVotes = onSnapshot(votesRef(), snapshot => {
+        currentVotes = snapshot.docs.map(item => ({ id: item.id, ...item.data() }));
+        renderLeaderboard();
+      }, error => { console.error(error); leaderboardStatus.textContent = 'Could not load votes from Firestore. Check database rules.'; });
+      unsubSettings = onSnapshot(settingsRef(), snapshot => {
+        const mode = snapshot.exists() ? snapshot.data().leaderboardVisibility : 'showAll';
+        if (['showAll', 'hideAll', 'hideTop3'].includes(mode)) applyVisibility(mode);
+        settingsStatus.textContent = 'Visibility changes sync live from Firestore.';
+      }, error => { console.error(error); settingsStatus.textContent = 'Could not read settings. Check Firestore rules.'; });
+    }
+    function showView(id) {
+      document.querySelectorAll('.view').forEach(view => view.classList.toggle('active', view.id === id));
+      nav.querySelectorAll('button[data-view]').forEach(button => button.classList.toggle('active', button.dataset.view === id));
+      menuToggle.setAttribute('aria-expanded', nav.classList.contains('open') ? 'true' : 'false');
+      nav.classList.remove('open');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+    nav.addEventListener('click', event => {
+      const button = event.target.closest('button[data-view]');
+      if (button) showView(button.dataset.view);
+    });
+    menuToggle.addEventListener('click', () => {
+      nav.classList.toggle('open');
+      menuToggle.setAttribute('aria-expanded', nav.classList.contains('open') ? 'true' : 'false');
+    });
+    document.querySelectorAll('input[data-score]').forEach(input => input.addEventListener('input', () => {
+      document.querySelector(`[data-output="${input.dataset.score}"]`).textContent = input.value;
+    }));
+    function toast(message) {
+      const el = document.getElementById('toast'); el.textContent = message; el.classList.add('show');
+      window.setTimeout(() => el.classList.remove('show'), 2500);
+    }
+    submitVoteButton.addEventListener('click', async () => {
+      if (!db) { voteStatus.textContent = 'Add Firebase config first. Your votes were not saved.'; return toast('Firebase is not configured.'); }
+      const voter = currentTeams.find(team => team.id === voterSelect.value);
+      if (!voter) return toast('Select your team first.');
+      const targets = currentTeams.filter(team => team.id !== voter.id);
+      if (!targets.length) return toast('There are no other teams to rate.');
+      const batch = writeBatch(db);
+      for (const team of targets) {
+        const card = voteTargets.querySelector(`[data-team-id="${team.id}"]`);
+        const scores = Object.fromEntries([...card.querySelectorAll('input[data-criterion]')].map(input => [input.dataset.criterion, Number(input.value)]));
+        if (Object.values(scores).some(score => !Number.isInteger(score) || score < 1 || score > 10)) return toast('Every score must be from 1 to 10.');
+        const total = Object.values(scores).reduce((sum, score) => sum + score, 0);
+        batch.set(doc(db, 'votes', `${voter.id}__${team.id}`), {
+          voterTeamId: voter.id, voterTeamName: voter.name,
+          ratedTeamId: team.id, ratedTeamName: team.name,
+          criteria: scores, total, maxScore: 30, updatedAt: serverTimestamp()
+        });
+      }
+      submitVoteButton.disabled = true; voteStatus.textContent = 'Saving your votes…';
+      try {
+        await batch.commit();
+        voteStatus.textContent = `Your votes for ${targets.length} ${targets.length === 1 ? 'team' : 'teams'} were saved.`;
+        toast('Votes submitted successfully.');
+      } catch (error) {
+        console.error(error); voteStatus.textContent = 'Could not save votes. Check Firestore permissions.'; toast('Could not save votes.');
+      } finally { submitVoteButton.disabled = false; }
+    });
+    if (!db) { renderAdminTeams([]); renderVoteTargets(); renderLeaderboard(); }
+    window.addEventListener('beforeunload', () => { unsubTeams?.(); unsubSettings?.(); unsubVotes?.(); });
+  </script>
+</body>
+</html>
