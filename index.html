@@ -104,7 +104,7 @@
     import { getFirestore, collection, addDoc, deleteDoc, doc, onSnapshot, setDoc, serverTimestamp, runTransaction } from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js';
     import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, onAuthStateChanged, signOut } from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js';
 
-    const ADMIN_EMAILS = ['omarodat012@gmail.com', 'shahla.alzawahreh33@gmail.com'];
+    const ADMIN_EMAILS = ['omarodat012@gmail.com','shahla.alzawahreh33@gmail.com'];
 
     const firebaseConfig = {
       apiKey: 'AIzaSyCJH3t7zQIb5yrMsgsG5Kg6_osm7xvlXbs',
@@ -159,6 +159,7 @@
     let activeVotingTeamId = null;
     let authUser = null;
     let leaderTeam = null;
+    let renderedVotePair = null;
     let unsubTeams, unsubSettings, unsubVotes;
     const isAdminUser = user => Boolean(user?.email && ADMIN_EMAILS.some(email => email.trim().toLowerCase() === user.email.toLowerCase()));
 
@@ -217,20 +218,22 @@
       leaderAuthCard.hidden = signedLeader;
       leaderVoting.hidden = !signedLeader;
       if (!signedLeader) {
-        voteTargets.hidden = true; submitVoteButton.hidden = true;
+        renderedVotePair = null; voteTargets.hidden = true; submitVoteButton.hidden = true; submitVoteButton.disabled = false;
         if (authUser) leaderAuthStatus.textContent = 'This account is not linked to a team. Log in with the correct Team Leader account or sign out.';
         return;
       }
       document.getElementById('leaderTeamBadge').textContent = leaderTeam.name;
       voteTargets.replaceChildren(); voteTargets.hidden = true; submitVoteButton.hidden = true;
-      if (!activeVotingTeamId) { activeVotingNotice.textContent = 'Waiting for Admin to open voting for the next team...'; voteStatus.textContent = ''; return; }
-      if (activeVotingTeamId === leaderTeam.id) { activeVotingNotice.textContent = 'Your team is currently being evaluated! You cannot vote for your own team.'; voteStatus.textContent = ''; return; }
+      if (!activeVotingTeamId) { renderedVotePair = null; submitVoteButton.disabled = false; activeVotingNotice.textContent = 'Waiting for Admin to open voting for the next team...'; voteStatus.textContent = ''; return; }
+      if (activeVotingTeamId === leaderTeam.id) { renderedVotePair = null; submitVoteButton.disabled = false; activeVotingNotice.textContent = 'Your team is currently being evaluated! You cannot vote for your own team.'; voteStatus.textContent = ''; return; }
       const target = currentTeams.find(team => team.id === activeVotingTeamId);
-      if (!target) { activeVotingNotice.textContent = 'Waiting for Admin to open voting for the next team...'; voteStatus.textContent = ''; return; }
+      if (!target) { renderedVotePair = null; submitVoteButton.disabled = false; activeVotingNotice.textContent = 'Waiting for Admin to open voting for the next team...'; voteStatus.textContent = ''; return; }
       const voteId = `${leaderTeam.id}_${target.id}`;
       if (currentVotes.some(vote => vote.id === voteId)) {
-        activeVotingNotice.textContent = `Vote submitted for ${target.name}. Waiting for the next team...`; voteStatus.textContent = ''; return;
+        renderedVotePair = voteId; submitVoteButton.disabled = false; activeVotingNotice.textContent = `Vote submitted for ${target.name}. Waiting for the next team...`; voteStatus.textContent = ''; return;
       }
+      const pairChanged = renderedVotePair !== voteId;
+      renderedVotePair = voteId;
       activeVotingNotice.textContent = `Your team is up to vote for ${target.name}. Rate each criterion from 1 to 10.`;
       const card = document.createElement('article'); card.className = 'vote-team-card'; card.dataset.teamId = target.id;
       const header = document.createElement('div'); header.className = 'vote-team-header';
@@ -247,7 +250,8 @@
         line.append(input, value); field.append(label, line); ratings.append(field);
       });
       card.append(header, ratings); voteTargets.append(card); voteTargets.hidden = false; submitVoteButton.hidden = false;
-      voteStatus.textContent = '';
+      if (pairChanged) voteStatus.textContent = '';
+      submitVoteButton.disabled = false;
     }
 
     function applyVisibility(mode) {
@@ -392,11 +396,13 @@
       unsubSettings = onSnapshot(settingsRef(), snapshot => {
         const data = snapshot.exists() ? snapshot.data() : {};
         const mode = data.leaderboardVisibility || 'showAll';
-        activeVotingTeamId = data.activeVotingTeamId || null;
+        const nextActiveVotingTeamId = data.activeVotingTeamId || null;
+        const activeTeamChanged = nextActiveVotingTeamId !== activeVotingTeamId;
+        activeVotingTeamId = nextActiveVotingTeamId;
         if (['showAll', 'hideAll', 'hideTop3'].includes(mode)) applyVisibility(mode);
         activeTeamSelect.value = activeVotingTeamId || '';
         activeTeamStatus.textContent = activeVotingTeamId ? `Voting is open for ${currentTeams.find(team => team.id === activeVotingTeamId)?.name || 'the selected team'}.` : 'Voting is closed. No team is active.';
-        renderVoteTab();
+        if (activeTeamChanged) renderVoteTab();
         settingsStatus.textContent = 'Visibility changes sync live from Firestore.';
       }, error => { console.error(error); settingsStatus.textContent = 'Could not read settings. Check Firestore rules.'; });
     }
@@ -536,8 +542,8 @@
         voteStatus.textContent = `Vote submitted for ${target.name}. Waiting for the next team...`;
         toast('Vote submitted successfully.');
       } catch (error) {
-        console.error(error); voteStatus.textContent = 'Could not save your vote. Check Firestore permissions.'; toast('Could not save vote.'); submitVoteButton.disabled = false;
-      }
+        console.error(error); voteStatus.textContent = 'Could not save your vote. Check Firestore permissions.'; toast('Could not save vote.');
+      } finally { submitVoteButton.disabled = false; }
     });
     if (!db) { renderAdminTeams([]); renderClaimTeamOptions(); renderLeaderboard(); renderVoteTab(); }
     window.addEventListener('beforeunload', () => { unsubTeams?.(); unsubSettings?.(); unsubVotes?.(); });
